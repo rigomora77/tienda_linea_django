@@ -2,9 +2,14 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 
 from django.contrib import messages
-from django.contrib.auth import authenticate    #Libreria para verificar si un usuario existe
 from django.contrib.auth import login           #Libreria para autenticar a los usuarios existentes
 from django.contrib.auth import logout
+from django.contrib.auth import authenticate    #Libreria para verificar si un usuario existe
+
+from django.contrib.auth.models import User
+
+from .forms import RegisterForm
+
 
 def index(request):
   return render(request, 'index.html', {
@@ -41,3 +46,20 @@ def logout_view(request):
   logout(request)
   messages.success(request, 'Sesión cerrada exitosamente')
   return redirect('login')
+
+
+def register(request):
+  form = RegisterForm(request.POST or None)     #Se envia el formulario con los datos del cliente o en su defecto vacio
+
+  if request.method == 'POST' and form.is_valid():    
+
+    user = form.save()
+    if user:
+      login(request, user)
+      messages.success(request, 'Usuario creado exitosamente')
+      return redirect('index')
+
+
+  return render(request, 'usuarios/register.html' ,{
+    'form':form
+  })
