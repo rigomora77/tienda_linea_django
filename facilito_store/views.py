@@ -25,6 +25,10 @@ def index(request):
 
 
 def login_view(request):                        #Se le cambia el nombre a la funcion para no tener conflictos con libreria
+  
+  if request.user.is_authenticated:
+    return redirect('index')
+  
   if request.method == 'POST':
     username = request.POST.get('username')
     password = request.POST.get('password')
@@ -49,6 +53,10 @@ def logout_view(request):
 
 
 def register(request):
+
+  if request.user.is_authenticated:
+    return redirect('index')
+
   form = RegisterForm(request.POST or None)     #Se envia el formulario con los datos del cliente o en su defecto vacio
 
   if request.method == 'POST' and form.is_valid():    
