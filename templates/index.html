@@ -11,13 +11,11 @@
 
     {% for product in products %}
     <li class="list-group-item">{{ product.title }}
-      <span>
-        {% if product.stock %}
-        <span class="text-success">Disponible</span>
-        {% else %}
-        <span class="text-danger">No Disponible</span>
-        {% endif %}
-      </span>
+      
+        
+      <span class="text-success">${{ product.price }}</span>
+        
+      
     </li>
 
     {% endfor %}
