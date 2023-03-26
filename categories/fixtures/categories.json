@@ -1,0 +1,22 @@
+[
+{
+    "model": "categories.category",
+    "pk": 1,
+    "fields": {
+        "title": "Ropa",
+        "description": "Esta categoría es para todo lo que se viste",
+        "created_at": "2023-03-26T21:01:32.009Z",
+        "products": []
+    }
+},
+{
+    "model": "categories.category",
+    "pk": 2,
+    "fields": {
+        "title": "Jueguete",
+        "description": "Todos los productos con los que se puede jugar",
+        "created_at": "2023-03-26T21:02:16.000Z",
+        "products": []
+    }
+}
+]

@@ -6,7 +6,8 @@ from django.contrib.auth import login           #Libreria para autenticar a los 
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate    #Libreria para verificar si un usuario existe
 
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
+from users.models import User
 
 from .forms import RegisterForm
 
