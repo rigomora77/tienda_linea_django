@@ -34,6 +34,12 @@ class Cart(models.Model):
     self.total = self.subtotal + (self.subtotal * decimal.Decimal(Cart.FEE))
     self.save()
   
+class CartProduct(models.Model):
+  cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+  product = models.ForeignKey(Product, on_delete=models.CASCADE)
+  quantity = models.IntegerField(default=1)
+  created_at = models.DateTimeField(auto_now_add=True)
+
 def set_cart_id(sender, instance, *args, **kwargs):
   if not instance.cart_id:
     instance.cart_id = str(uuid.uuid4())
