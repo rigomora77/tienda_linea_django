@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404
 from products.models import Product
 
 from .models import Cart
+from .models import CartProducts
 from .utils import get_or_create_cart
 
 def cart(request):  
