@@ -2,9 +2,11 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 
 from django.contrib import messages
-from django.contrib.auth import login           #Libreria para autenticar a los usuarios existentes
+from django.contrib.auth import login
 from django.contrib.auth import logout
-from django.contrib.auth import authenticate    #Libreria para verificar si un usuario existe
+from django.contrib.auth import authenticate
+
+from django.http import HttpResponseRedirect
 
 #from django.contrib.auth.models import User
 from users.models import User
@@ -25,7 +27,7 @@ def index(request):
   })
 
 
-def login_view(request):                        #Se le cambia el nombre a la funcion para no tener conflictos con libreria
+def login_view(request):
   
   if request.user.is_authenticated:
     return redirect('index')
@@ -38,7 +40,11 @@ def login_view(request):                        #Se le cambia el nombre a la fun
     if user:
       login(request, user)                      
       messages.success(request, 'Bienvenido {}'.format(user.username))
-      return redirect('index')                  #Si el login fue exitoso se redirige a la pagina de index
+
+      if request.GET.get('next'):
+        return HttpResponseRedirect(request.GET['next'])
+
+      return redirect('index')
     else:
       messages.error(request, 'Usuario o contraseñas no válidos')
 
