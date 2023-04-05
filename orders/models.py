@@ -43,6 +43,14 @@ class Order(models.Model):
   def update_shipping_address(self, shipping_address):
     self.shipping_address = shipping_address
     self.save()
+
+  def cancel(self):
+    self.status = OrderStatus.CANCELED
+    self.save()
+
+  def complete(self):
+    self.status = OrderStatus.COMPLETED
+    self.save()
   
   def update_total(self):
     self.total = self.get_total()
