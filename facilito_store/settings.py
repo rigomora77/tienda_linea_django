@@ -109,13 +109,14 @@ USE_I18N = True
 USE_TZ = True
 
 from decouple import config
-from dotenv import load_dotenv
 
-EMAIL_HOST = 'smtp.googlemail.com'
-EMAIL_PORT = 587
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'rmora180577@gmail.com'
 EMAIL_HOST_PASSWORD = config('USER_MAIL_PASSWORD')
-EMAIL_USER_TLS = True
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
