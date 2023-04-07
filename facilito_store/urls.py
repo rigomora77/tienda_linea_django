@@ -20,7 +20,8 @@ urlpatterns = [
   path('carrito/', include('carts.urls')),
   path('orden/', include('orders.urls')),
   path('direcciones/', include('shipping_addresses.urls')),
-  path('codigos/', include('promo_codes.urls'))
+  path('codigos/', include('promo_codes.urls')),
+  path('pago/', include('billing_profiles.urls'))
 ]
 
 if settings.DEBUG:
